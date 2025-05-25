@@ -1,0 +1,276 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   JJ-WEB | Minecraft Crafting Recipes
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gradient-to-br from-green-700 via-yellow-500 to-orange-600 min-h-screen flex flex-col">
+  <header class="bg-white bg-opacity-20 backdrop-blur-md sticky top-0 z-50 shadow-md">
+   <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a class="text-white text-2xl font-bold tracking-wide drop-shadow-lg flex items-center" href="#">
+     <img alt="Pixelated Minecraft crafting table icon" class="w-8 h-8 mr-2" height="32" src="https://storage.googleapis.com/a1aa/image/b50f9ae6-3b50-44fa-7ced-e8cce1a20e99.jpg" width="32"/>
+     JJ-WEB
+    </a>
+    <ul class="hidden md:flex space-x-8 text-white font-semibold">
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#recipes">
+       Recipes
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#about">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#contact">
+       Contact
+      </a>
+     </li>
+    </ul>
+    <button class="md:hidden text-white focus:outline-none" id="menu-btn">
+     <i class="fas fa-bars fa-2x">
+     </i>
+    </button>
+   </nav>
+   <div class="hidden md:hidden bg-white bg-opacity-20 backdrop-blur-md" id="mobile-menu">
+    <ul class="flex flex-col space-y-4 p-6 text-white font-semibold">
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#recipes">
+       Recipes
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#about">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="hover:text-yellow-300 transition" href="#contact">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </div>
+  </header>
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-12">
+   <section class="text-center text-white mb-20">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">
+     Minecraft Crafting Recipes
+    </h1>
+    <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 drop-shadow-md">
+     Discover all the essential crafting recipes to build, survive, and thrive in Minecraft. From basic tools to advanced items, we've got you covered.
+    </p>
+    <a class="inline-block bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold py-3 px-8 rounded-full shadow-lg transition" href="#recipes">
+     Explore Recipes
+    </a>
+   </section>
+   <section class="grid grid-cols-1 md:grid-cols-3 gap-10 text-white" id="recipes">
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Wooden Pickaxe
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted using wooden planks and sticks. Essential for mining stone and coal.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">S</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">S</div>
+      <div class="bg-transparent aspect-square"></div>
+     </div>
+    </div>
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Stone Sword
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted with cobblestone and sticks. A reliable weapon for early combat.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">S</div>
+      <div class="bg-transparent aspect-square"></div>
+     </div>
+    </div>
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Furnace
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted from cobblestone blocks. Used to smelt ores and cook food.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">C</div>
+     </div>
+    </div>
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Crafting Table
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted from wooden planks. Allows crafting of more complex items.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">W</div>
+     </div>
+    </div>
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Iron Pickaxe
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted with iron ingots and sticks. Mines faster and can mine diamonds.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-gray-300 rounded border border-gray-500 aspect-square flex items-center justify-center font-bold text-green-900">I</div>
+      <div class="bg-gray-300 rounded border border-gray-500 aspect-square flex items-center justify-center font-bold text-green-900">I</div>
+      <div class="bg-gray-300 rounded border border-gray-500 aspect-square flex items-center justify-center font-bold text-green-900">I</div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-transparent aspect-square"></div>
+      <div class="bg-yellow-300 rounded border border-yellow-600 aspect-square flex items-center justify-center font-bold text-green-900">S</div>
+      <div class="bg-transparent aspect-square"></div>
+     </div>
+    </div>
+    <div class="bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 flex flex-col shadow-lg hover:scale-105 transform transition">
+     <h3 class="text-2xl font-semibold mb-3 text-center">
+      Golden Apple
+     </h3>
+     <p class="text-center text-sm md:text-base mb-4">
+      Crafted with apples and gold ingots. Grants powerful regeneration effects.
+     </p>
+     <div class="grid grid-cols-3 gap-2 justify-center">
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-red-500 rounded border border-red-700 aspect-square flex items-center justify-center font-bold text-yellow-100">A</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+      <div class="bg-yellow-400 rounded border border-yellow-700 aspect-square flex items-center justify-center font-bold text-green-900">G</div>
+     </div>
+    </div>
+   </section>
+   <section class="mt-20 bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-10 max-w-4xl mx-auto shadow-lg" id="about">
+    <h2 class="text-green-900 text-3xl font-bold mb-6 text-center">
+     About JJ-WEB
+    </h2>
+    <p class="text-green-900 text-center text-lg leading-relaxed">
+     JJ-WEB is your ultimate resource for Minecraft crafting recipes. Whether you're a beginner or a seasoned player, our site provides clear, easy-to-follow guides to help you craft everything you need to survive and build your world.
+    </p>
+   </section>
+   <section class="mt-20 bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-10 max-w-4xl mx-auto shadow-lg" id="contact">
+    <h2 class="text-green-900 text-3xl font-bold mb-6 text-center">
+     Contact Us
+    </h2>
+    <form class="flex flex-col gap-6 max-w-lg mx-auto text-green-900">
+     <label class="flex flex-col">
+      <span class="mb-2 font-semibold">
+       Name
+      </span>
+      <input aria-label="Name" class="rounded-md border-2 border-green-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your name" required="" type="text"/>
+     </label>
+     <label class="flex flex-col">
+      <span class="mb-2 font-semibold">
+       Email
+      </span>
+      <input aria-label="Email" class="rounded-md border-2 border-green-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your email" required="" type="email"/>
+     </label>
+     <label class="flex flex-col">
+      <span class="mb-2 font-semibold">
+       Message
+      </span>
+      <textarea aria-label="Message" class="rounded-md border-2 border-green-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Your message" required="" rows="4"></textarea>
+     </label>
+     <button class="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold rounded-full px-8 py-3 transition self-center" type="submit">
+      Send Message
+     </button>
+    </form>
+   </section>
+  </main>
+  <footer class="bg-green-900 text-white py-8 mt-20">
+   <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+    <p class="mb-4 md:mb-0">
+     © 2024 JJ-WEB. All rights reserved.
+    </p>
+    <div class="flex space-x-6 text-xl">
+     <a aria-label="Facebook" class="hover:text-yellow-400 transition" href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="Twitter" class="hover:text-yellow-400 transition" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a aria-label="Instagram" class="hover:text-yellow-400 transition" href="#">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="YouTube" class="hover:text-yellow-400 transition" href="#">
+      <i class="fab fa-youtube">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+ </body>
+</html>
