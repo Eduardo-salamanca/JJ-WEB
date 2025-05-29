@@ -622,6 +622,7 @@ const inventory = {
       const selectedScript = formData.get('script');
       const buyerName = formData.get('buyerName').trim();
       const buyerEmail = formData.get('buyerEmail').trim();
+      const enteredCode = formData.get('redeemCode').trim();
 
       if (!selectedScript || !buyerName || !buyerEmail) {
         alert('Please fill in all fields.');
