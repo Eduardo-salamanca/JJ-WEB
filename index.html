@@ -230,7 +230,19 @@ Streamline your order processing with this robust transaction script designed fo
        </span>
       </div>
      </div>
-     <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition" type="submit">
+     
+<p class="text-center text-indigo-700 font-semibold text-lg mb-4">
+  To purchase a script, chat me on <a href="https://wa.me/62895325278129" target="_blank" class="underline text-green-600">WhatsApp</a> at <strong>0895-3252-78129</strong>.<br/>
+  I will give you a code after payment. Enter it below to access your script.
+</p>
+
+<div class="mt-6">
+  <label class="block text-gray-700 font-semibold mb-2" for="redeem-code">
+    Enter Your Code
+  </label>
+  <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="redeem-code" name="redeemCode" placeholder="Paste the code here" required type="text"/>
+</div>
+<button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition" type="submit">
       Purchase Script
      </button>
     </form>
@@ -610,7 +622,15 @@ const inventory = {
         return;
       }
 
-      // Simulate purchase success
+      
+      const enteredCode = formData.get('redeemCode').trim();
+      const VALID_CODES = ['JJ123', 'VIP456', 'PAID789']; // You can update this list
+
+      if (!VALID_CODES.includes(enteredCode)) {
+        alert('Invalid code. Please enter the correct code given after payment.');
+        return;
+      }
+// Simulate purchase success
       alert(`Thank you, ${buyerName}! Your purchase of "${selectedScript}" was successful.`);
 
       // Display the purchased script with screenshot protection
@@ -742,6 +762,14 @@ adminToggleBtn.addEventListener('click', () => {
   adminToggleBtn.textContent = adminMode ? 'Exit Admin' : 'Admin Mode';
   toggleAdminEditing(adminMode);
   showExportButton(adminMode);
+});
+
+// Extra screenshot prevention
+document.addEventListener("keyup", function(e) {
+  if (e.key === "PrintScreen") {
+    navigator.clipboard.writeText("");
+    alert("Screenshot is blocked on this site.");
+  }
 });
 </script>
  </body>
