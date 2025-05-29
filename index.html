@@ -176,52 +176,65 @@ Streamline your order processing with this robust transaction script designed fo
      </div>
     </div>
    </section>
-   
-<section class="mb-20 max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8" id="buy">
-  <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
-    Purchase Your Script
-  </h2>
-  <form autocomplete="off" class="space-y-6" id="purchase-form" spellcheck="false">
-    <div>
-      <label class="block text-gray-700 font-semibold mb-2" for="script-select">
-        Select Script
-      </label>
-      <select class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="script-select" name="script" required>
-        <option disabled selected value="">Select a script</option>
-        <option value="Payment Gateway Script">Payment Gateway Script - Rp 10.000</option>
-        <option value="Inventory Management Script">Inventory Management Script - Rp 10.000</option>
-        <option value="Order Processing Script">Order Processing Script - Rp 10.000</option>
-      </select>
-    </div>
-    <div>
-      <label class="block text-gray-700 font-semibold mb-2" for="buyer-name">
-        Your Name
-      </label>
-      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="buyer-name" name="buyerName" placeholder="Enter your full name" required type="text"/>
-    </div>
-    <div>
-      <label class="block text-gray-700 font-semibold mb-2" for="buyer-email">
-        Email Address
-      </label>
-      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="buyer-email" name="buyerEmail" placeholder="Enter your email address" required type="email"/>
-    </div>
-    <div class="text-center text-lg text-gray-700 bg-indigo-50 border border-indigo-200 rounded-md p-4">
-      Please contact us via <span class="font-bold text-indigo-700">WhatsApp</span> to complete the payment:<br/>
-      <a href="https://wa.me/62895325278129" target="_blank" class="text-green-600 font-semibold hover:underline">0895-3252-78129</a><br/>
-      After payment, we will give you a code.
-    </div>
-    <div>
-      <label class="block text-gray-700 font-semibold mb-2" for="purchase-code">
-        Enter Your Code (Given After Payment)
-      </label>
-      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" id="purchase-code" name="purchaseCode" placeholder="Enter your code" required type="text"/>
-    </div>
-    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition" type="submit">
-      Unlock Script
-    </button>
-  </form>
-</section>
+   <section class="mb-20 max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8" id="buy">
+    <h2 class="text-3xl font-semibold text-indigo-700 mb-6 text-center">
+     Purchase Your Script
+    </h2>
+<!-- Export button - only visible to admin -->
+<div id="admin-export-container" class="hidden text-center mb-6">
+  <button id="export-btn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded transition">
+    Export Scripts Data
+  </button>
+</div>
 
+    <form autocomplete="off" class="space-y-6" id="purchase-form" spellcheck="false">
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2" for="script-select">
+       Select Script
+      </label>
+      <select class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="script-select" name="script" required="">
+       <option disabled="" selected="" value="">
+        Select a script
+       </option>
+       <option data-price="10.000" value="Payment Gateway Script">
+        Payment Gateway Script -  Rp 10.000
+       </option>
+       <option data-price="10.000" value="Inventory Management Script">
+        Inventory Management Script -  Rp 10.000
+       </option>
+       <option data-price="10.000" value="Order Processing Script">
+        Order Processing Script -  Rp 10.000
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2" for="buyer-name">
+       Your Name
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="buyer-name" name="buyerName" placeholder="Enter your full name" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2" for="buyer-email">
+       Email Address
+      </label>
+      <input class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" id="buyer-email" name="buyerEmail" placeholder="Enter your email address" required="" type="email"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2">
+       Payment Method
+      </label>
+      <div class="flex items-center space-x-4">
+       <img alt="QRIS payment logo in black and white" class="h-12 w-auto" height="40" src="https://storage.googleapis.com/a1aa/image/50fe4ec0-e7ad-4229-020a-dce99e2247f7.jpg" width="80"/>
+       <span class="text-indigo-700 font-semibold text-lg">
+        QRIS Only
+       </span>
+      </div>
+     </div>
+     <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition" type="submit">
+      Purchase Script
+     </button>
+    </form>
+   </section>
    <section class="mb-20 max-w-4xl mx-auto text-center px-6" id="about">
     <h2 class="text-3xl font-semibold text-indigo-700 mb-6">
      About JJ-SCRIPT
@@ -330,7 +343,7 @@ Streamline your order processing with this robust transaction script designed fo
       "Payment Gateway Script": {
         price: "10.000",
         description: "Secure and reliable payment gateway script for online transactions with fraud detection.",
-        imageSrc: "script1.jpeg",
+        imageSrc: "https://storage.googleapis.com/a1aa/image/2b1ddc6d-d5d6-45b5-0111-27e9364631a4.jpg",
         code: `// Payment Gateway Script
 function processPayment(amount, cardDetails) {
   if (!validateCard(cardDetails)) {
@@ -597,19 +610,7 @@ const inventory = {
         return;
       }
 
-      const purchaseCode = formData.get('purchaseCode').trim();
-
-// Valid codes per script
-const SCRIPT_CODES = {
-  "Payment Gateway Script": ["JJ123"],
-  "Inventory Management Script": ["JJ456"],
-  "Order Processing Script": ["JJ789"]
-};
-
-if (!SCRIPT_CODES[selectedScript] || !SCRIPT_CODES[selectedScript].includes(purchaseCode)) {
-  alert('Invalid code for the selected script. Please make sure the code matches the script you selected.');
-  return;
-}
+      // Simulate purchase success
       alert(`Thank you, ${buyerName}! Your purchase of "${selectedScript}" was successful.`);
 
       // Display the purchased script with screenshot protection
@@ -673,7 +674,75 @@ if (!SCRIPT_CODES[selectedScript] || !SCRIPT_CODES[selectedScript].includes(purc
       e.preventDefault();
       alert('Copying script content is disabled.');
     });
-  </script>
+  
+// ====== Local Storage Save/Load ======
+function saveToLocalStorage() {
+  localStorage.setItem('scriptsData', JSON.stringify(scriptsData));
+}
+
+function loadFromLocalStorage() {
+  const saved = localStorage.getItem('scriptsData');
+  if (saved) {
+    try {
+      scriptsData = JSON.parse(saved);
+      for (const card of document.querySelectorAll('.script-card')) {
+        const scriptName = card.getAttribute('data-script');
+        const data = scriptsData[scriptName];
+        if (!data) continue;
+
+        const img = card.querySelector('.editable-img');
+        if (img) img.src = data.imageSrc;
+
+        const title = card.querySelector('.editable-title');
+        if (title) title.textContent = scriptName;
+
+        const desc = card.querySelector('.editable-description');
+        if (desc) desc.value = data.description;
+
+        const price = card.querySelector('.editable-price');
+        if (price) price.textContent = `Rp ${data.price}`;
+      }
+    } catch (e) {
+      console.error('Failed to load saved scriptsData:', e);
+    }
+  }
+}
+window.addEventListener('load', loadFromLocalStorage);
+
+// ====== Export JSON File ======
+function exportScriptsData() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(scriptsData, null, 2));
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download", "scriptsData.json");
+  dlAnchor.click();
+}
+document.getElementById('export-btn').addEventListener('click', exportScriptsData);
+
+// ====== Show Export Button for Admins ======
+function showExportButton(show) {
+  const container = document.getElementById('admin-export-container');
+  if (show) {
+    container.classList.remove('hidden');
+  } else {
+    container.classList.add('hidden');
+  }
+}
+
+// Update admin mode toggle logic
+function enableAdminMode() {
+  adminMode = true;
+  adminToggleBtn.textContent = 'Exit Admin';
+  toggleAdminEditing(true);
+  showExportButton(true);
+}
+
+adminToggleBtn.addEventListener('click', () => {
+  adminMode = !adminMode;
+  adminToggleBtn.textContent = adminMode ? 'Exit Admin' : 'Admin Mode';
+  toggleAdminEditing(adminMode);
+  showExportButton(adminMode);
+});
+</script>
  </body>
 </html>
-
