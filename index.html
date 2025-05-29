@@ -344,26 +344,425 @@ Streamline your order processing with this robust transaction script designed fo
     }
 
     // Toggle admin mode button
-    
+    adminToggleBtn.addEventListener('click', () => {
+      adminMode = !adminMode;
+      adminToggleBtn.textContent = adminMode ? 'Exit Admin' : 'Admin Mode';
+      toggleAdminEditing(adminMode);
+    });
+
+    // Store scripts data with editable fields
+    let scriptsData = {
+      "Payment Gateway Script": {
+        price: "10.000",
+        description: "Secure and reliable payment gateway script for online transactions with fraud detection.",
+        imageSrc: "https://storage.googleapis.com/a1aa/image/2b1ddc6d-d5d6-45b5-0111-27e9364631a4.jpg",
+        code: `// Payment Gateway Script
+function processPayment(amount, cardDetails) {
+  if (!validateCard(cardDetails)) {
+    throw new Error('Invalid card details');
+  }
+  // Connect to payment processor API
+  const response = paymentProcessor.charge(amount, cardDetails);
+  if (response.success) {
+    return 'Payment successful';
+  } else {
+    return 'Payment failed: ' + response.errorMessage;
+  }
+}
+
+function validateCard(card) {
+  // Basic Luhn check
+  let sum = 0;
+  let shouldDouble = false;
+  for (let i = card.number.length - 1; i >= 0; i--) {
+    let digit = parseInt(card.number.charAt(i));
+    if (shouldDouble) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+    shouldDouble = !shouldDouble;
+  }
+  return sum % 10 === 0;
+}`
+      },
+      "Inventory Management Script": {
+        price: "10.000",
+        description: "Manage your stock and sales efficiently with this easy-to-use inventory transaction script.",
+        imageSrc: "https://storage.googleapis.com/a1aa/image/47b66a10-3035-471b-6f4c-94756ce1b9d0.jpg",
+        code: `// Inventory Management Script
+class Inventory {
+  constructor() {
+    this.items = {};
+  }
+
+  addItem(id, name, quantity) {
+    if (this.items[id]) {
+      this.items[id].quantity += quantity;
+    } else {
+      this.items[id] = { name, quantity };
+    }
+  }
+
+  removeItem(id, quantity) {
+    if (!this.items[id] || this.items[id].quantity < quantity) {
+      throw new Error('Insufficient stock');
+    }
+    this.items[id].quantity -= quantity;
+    if (this.items[id].quantity === 0) {
+      delete this.items[id];
+    }
+  }
+
+  getStock(id) {
+    return this.items[id] ? this.items[id].quantity : 0;
+  }
+}`
+      },
+      "Order Processing Script": {
+        price: "10.000",
+        description: "Streamline your order processing with this robust transaction script designed for e-commerce.",
+        imageSrc: "https://storage.googleapis.com/a1aa/image/92283331-f3ed-488a-0642-a67d578e3410.jpg",
+        code: `// Order Processing Script
+function processOrder(order) {
+  if (!order.items || order.items.length === 0) {
+    throw new Error('Order must contain items');
+  }
+  order.status = 'Processing';
+  for (const item of order.items) {
+    if (!inventory.hasStock(item.id, item.quantity)) {
+      order.status = 'Failed';
+      return 'Order failed: Insufficient stock for ' + item.id;
+    }
+  }
+  for (const item of order.items) {
+    inventory.removeItem(item.id, item.quantity);
+  }
+  order.status = 'Completed';
+  return 'Order processed successfully';
+}
+
+const inventory = {
+  stock: { 'item1': 10, 'item2': 5 },
+  hasStock(id, qty) {
+    return this.stock[id] && this.stock[id] >= qty;
+  },
+  removeItem(id, qty) {
+    if (this.hasStock(id, qty)) {
+      this.stock[id] -= qty;
+    }
+  }
+};`
+      }
+    };
+
+    // Toggle admin editing on/off
+    function toggleAdminEditing(enable) {
+      // Titles
+      document.querySelectorAll('.editable-title').forEach(el => {
+        el.contentEditable = enable;
+        el.classList.toggle('border', enable);
+        el.classList.toggle('border-indigo-500', enable);
+        el.classList.toggle('rounded', enable);
+        el.classList.toggle('p-1', enable);
+        el.setAttribute('aria-label', enable ? 'Editable script title' : '');
+      });
+      // Descriptions
+      document.querySelectorAll('.editable-description').forEach(el => {
+        el.readOnly = !enable;
+        el.classList.toggle('border-indigo-500', enable);
+        el.classList.toggle('bg-white', enable);
+        el.classList.toggle('text-gray-900', enable);
+        el.classList.toggle('text-gray-600', !enable);
+      });
+      // Prices
+      document.querySelectorAll('.editable-price').forEach(el => {
+        el.contentEditable = enable;
+        el.classList.toggle('border', enable);
+        el.classList.toggle('border-indigo-500', enable);
+        el.classList.toggle('rounded', enable);
+        el.classList.toggle('p-1', enable);
+        el.setAttribute('aria-label', enable ? 'Editable script price' : '');
+      });
+      // Images
+      document.querySelectorAll('.editable-img').forEach(img => {
+        if (enable) {
+          img.style.cursor = 'pointer';
+          img.title = 'Click to change image (Admin only)';
+          img.addEventListener('click', onImageClick);
+        } else {
+          img.style.cursor = 'default';
+          img.title = '';
+          img.removeEventListener('click', onImageClick);
+        }
+      });
+    }
+
+    // Image click handler for admin image editing
+    function onImageClick(e) {
+      if (!adminMode) return;
+      const img = e.currentTarget;
+      const scriptName = img.getAttribute('data-script');
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.click();
+      input.onchange = () => {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            img.src = ev.target.result;
+            // Update scriptsData imageSrc
+            if (scriptsData[scriptName]) {
+              scriptsData[scriptName].imageSrc = ev.target.result;
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    // Save edits on blur or input for titles, descriptions, prices
+    function saveEdits() {
+      // Titles
+      document.querySelectorAll('.editable-title').forEach(el => {
+        el.addEventListener('blur', () => {
+          const oldScriptName = el.getAttribute('data-script');
+          if (!scriptsData[oldScriptName]) return;
+          const newTitle = el.textContent.trim();
+          if (newTitle.length === 0) {
+            el.textContent = oldScriptName;
+            return;
+          }
+          if (newTitle !== oldScriptName) {
+            // Update scriptsData key
+            scriptsData[newTitle] = scriptsData[oldScriptName];
+            delete scriptsData[oldScriptName];
+            el.setAttribute('data-script', newTitle);
+            // Update select option
+            const option = [...scriptSelect.options].find(o => o.value === oldScriptName);
+            if (option) {
+              option.value = newTitle;
+              option.textContent = `${newTitle} - $${scriptsData[newTitle].price}`;
+            }
+            // Update script-card data-script attribute
+            const card = el.closest('.script-card');
+            if (card) card.setAttribute('data-script', newTitle);
+            // Update buy buttons data-script attribute
+            document.querySelectorAll(`.buy-btn[data-script="${oldScriptName}"]`).forEach(btn => {
+              btn.setAttribute('data-script', newTitle);
+            });
+            // Update editable-description and editable-price data-script attributes
+            const desc = card.querySelector('.editable-description');
+            if (desc) desc.setAttribute('data-script', newTitle);
+            const price = card.querySelector('.editable-price');
+            if (price) price.setAttribute('data-script', newTitle);
+            const img = card.querySelector('.editable-img');
+            if (img) img.setAttribute('data-script', newTitle);
+          }
+        });
+      });
+      // Descriptions
+      document.querySelectorAll('.editable-description').forEach(el => {
+        el.addEventListener('input', () => {
+          const scriptName = el.getAttribute('data-script');
+          if (!scriptsData[scriptName]) return;
+          scriptsData[scriptName].description = el.value;
+        });
+      });
+      // Prices
+      document.querySelectorAll('.editable-price').forEach(el => {
+        el.addEventListener('blur', () => {
+          const scriptName = el.getAttribute('data-script');
+          if (!scriptsData[scriptName]) return;
+          let newPrice = el.textContent.trim().replace(/[^0-9.]/g, '');
+          if (newPrice === '' || isNaN(newPrice)) {
+            // Revert to old price if invalid
+            el.textContent = `$${scriptsData[scriptName].price}`;
+            return;
+          }
+          newPrice = parseFloat(newPrice).toFixed(2);
+          scriptsData[scriptName].price = newPrice;
+          el.textContent = `$${newPrice}`;
+          // Update select option text
+          const option = [...scriptSelect.options].find(o => o.value === scriptName);
+          if (option) {
+            option.textContent = `${scriptName} - $${newPrice}`;
+            option.setAttribute('data-price', newPrice);
+          }
+          // Update buy buttons data-price attribute
+          document.querySelectorAll(`.buy-btn[data-script="${scriptName}"]`).forEach(btn => {
+            btn.setAttribute('data-price', newPrice);
+          });
+        });
+      });
+    }
+    saveEdits();
+
+    // Purchase form handling
+    const purchaseForm = document.getElementById('purchase-form');
+    const scriptDisplaySection = document.getElementById('script-display');
+    const scriptContent = document.getElementById('script-content');
+
+    purchaseForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(purchaseForm);
+      const selectedScript = formData.get('script');
+      const buyerName = formData.get('buyerName').trim();
+      const buyerEmail = formData.get('buyerEmail').trim();
+
+      if (!selectedScript || !buyerName || !buyerEmail) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      if (!scriptsData[selectedScript]) {
+        alert('Selected script not found.');
+        return;
+      }
+
+      
+      const enteredCode = formData.get('redeemCode').trim();
+      const VALID_CODES = ['JJ123', 'VIP456', 'PAID789']; // You can update this list
+
+      if (!VALID_CODES.includes(enteredCode)) {
+        alert('Invalid code. Please enter the correct code given after payment.');
+        return;
+      }
+// Simulate purchase success
+      alert(`Thank you, ${buyerName}! Your purchase of "${selectedScript}" was successful.`);
+
+      // Display the purchased script with screenshot protection
+      scriptDisplaySection.classList.remove('hidden');
+      scriptContent.textContent = scriptsData[selectedScript].code || '// Script content not available';
+
+      // Scroll to script display
+      scriptDisplaySection.scrollIntoView({ behavior: 'smooth' });
+
+      // Clear form
+      purchaseForm.reset();
+    });
+
+    // Buy buttons on script cards
+    scriptsContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('buy-btn')) {
+        const btn = e.target;
+        const scriptName = btn.getAttribute('data-script');
+        if (!scriptName) return;
+        const scriptSelectOption = [...scriptSelect.options].find(o => o.value === scriptName);
+        if (scriptSelectOption) {
+          scriptSelect.value = scriptName;
+          window.scrollTo({
+            top: document.getElementById('buy').offsetTop - 20,
+            behavior: 'smooth',
+          });
+        }
+      }
+    });
+
+    // Disable screenshot and print attempts
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'PrintScreen') {
+        e.preventDefault();
+        alert('Screenshots are disabled on this site.');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        alert('Printing is disabled on this site.');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        alert('Saving the page is disabled on this site.');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        alert('Copying is disabled on this site.');
+      }
+    });
+
+    window.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      alert('Right-click is disabled on this site.');
+    });
+
+    window.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+    });
+
+    scriptContent.addEventListener('copy', (e) => {
+      e.preventDefault();
+      alert('Copying script content is disabled.');
+    });
+  
+// ====== Local Storage Save/Load ======
+function saveToLocalStorage() {
+  localStorage.setItem('scriptsData', JSON.stringify(scriptsData));
+}
+
+function loadFromLocalStorage() {
+  const saved = localStorage.getItem('scriptsData');
+  if (saved) {
+    try {
+      scriptsData = JSON.parse(saved);
+      for (const card of document.querySelectorAll('.script-card')) {
+        const scriptName = card.getAttribute('data-script');
+        const data = scriptsData[scriptName];
+        if (!data) continue;
+
+        const img = card.querySelector('.editable-img');
+        if (img) img.src = data.imageSrc;
+
+        const title = card.querySelector('.editable-title');
+        if (title) title.textContent = scriptName;
+
+        const desc = card.querySelector('.editable-description');
+        if (desc) desc.value = data.description;
+
+        const price = card.querySelector('.editable-price');
+        if (price) price.textContent = `Rp ${data.price}`;
+      }
+    } catch (e) {
+      console.error('Failed to load saved scriptsData:', e);
+    }
+  }
+}
+window.addEventListener('load', loadFromLocalStorage);
+
+// ====== Export JSON File ======
+function exportScriptsData() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(scriptsData, null, 2));
+  const dlAnchor = document.createElement('a');
+  dlAnchor.setAttribute("href", dataStr);
+  dlAnchor.setAttribute("download", "scriptsData.json");
+  dlAnchor.click();
+}
+document.getElementById('export-btn').addEventListener('click', exportScriptsData);
+
+// ====== Show Export Button for Admins ======
+function showExportButton(show) {
+  const container = document.getElementById('admin-export-container');
+  if (show) {
+    container.classList.remove('hidden');
+  } else {
+    container.classList.add('hidden');
+  }
+}
+
+// Update admin mode toggle logic
+function enableAdminMode() {
+  adminMode = true;
+  adminToggleBtn.textContent = 'Exit Admin';
+  toggleAdminEditing(true);
+  showExportButton(true);
+}
+
 adminToggleBtn.addEventListener('click', () => {
   adminMode = !adminMode;
-
-  if (adminMode) {
-    adminToggleBtn.textContent = 'Exit Admin';
-    toggleAdminEditing(true);
-    showExportButton(true);
-  } else {
-    adminToggleBtn.textContent = 'Admin Mode';
-    toggleAdminEditing(false);
-    showExportButton(false);
-
-    // Disable admin fields visually
-    adminCodeInput.disabled = false;
-    adminSubmitBtn.disabled = false;
-    adminSuccess.classList.add('hidden');
-  }
+  adminToggleBtn.textContent = adminMode ? 'Exit Admin' : 'Admin Mode';
+  toggleAdminEditing(adminMode);
+  showExportButton(adminMode);
 });
-
 
 // Extra screenshot prevention
 document.addEventListener("keyup", function(e) {
